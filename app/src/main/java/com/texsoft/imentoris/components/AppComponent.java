@@ -1,7 +1,7 @@
 package com.texsoft.imentoris.components;
 
-import com.texsoft.imentoris.CustomApplication;
 import com.texsoft.imentoris.modules.AppModule;
+import com.texsoft.imentoris.modules.FirebaseModules;
 
 import javax.inject.Singleton;
 
@@ -12,7 +12,7 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = {AppModule.class})
+@Component(modules = {AppModule.class, FirebaseModules.class})
 public interface AppComponent {
-    CustomApplication customApplication();
+
 }
