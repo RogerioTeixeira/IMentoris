@@ -1,6 +1,5 @@
 package com.texsoft.imentoris.modules;
 
-import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
@@ -31,13 +30,13 @@ public class AppModule {
 
     @Provides
     @Singleton
-    SharedPreferences provideSharedPreferences() {
+    public SharedPreferences provideSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(application);
     }
 
     @Provides
     @Singleton
-    protected Resources provideResources() {
+    public Resources provideResources() {
         return application.getResources();
 
     }

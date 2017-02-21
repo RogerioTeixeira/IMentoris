@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "958423333881",
+    "firebase_url": "https://imentoris-d8e73.firebaseio.com",
+    "project_id": "imentoris-d8e73",
+    "storage_bucket": "imentoris-d8e73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958423333881:android:98f7457595e115d4",
+        "android_client_info": {
+          "package_name": "com.texsoft.imentoris.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958423333881-bivkieep30ipbnjbthntbsp5j046sniu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.texsoft.imentoris.debug",
+            "certificate_hash": "bc8dc0037efa991f76c2c8c4f9449584cb19f62c"
+          }
+        },
+        {
+          "client_id": "958423333881-au45tlhft0orklclga4vj517f0s94peq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCti4calgf9TvP2Eef0E2nJ2FF3AwRleYM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958423333881-au45tlhft0orklclga4vj517f0s94peq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

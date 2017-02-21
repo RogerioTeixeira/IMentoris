@@ -1,8 +1,8 @@
 package com.texsoft.imentoris.modules;
 
-import com.google.firebase.auth.FirebaseAuth;
+import android.util.Log;
 
-import javax.inject.Singleton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,9 +13,10 @@ import dagger.Provides;
 
 @Module
 public class FirebaseModules {
-    @Singleton
+    // @Singleton
     @Provides
     FirebaseAuth firebaseAuth() {
+        Log.v("FirebaseTest", "Create instance");
         return FirebaseAuth.getInstance();
     }
 }
