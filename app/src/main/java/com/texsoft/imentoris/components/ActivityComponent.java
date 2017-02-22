@@ -1,6 +1,6 @@
 package com.texsoft.imentoris.components;
 
-import com.texsoft.imentoris.modules.LoginActivityModule;
+import com.texsoft.imentoris.modules.PresenterModule;
 import com.texsoft.imentoris.views.login.LoginActivity;
 
 import dagger.Subcomponent;
@@ -10,7 +10,7 @@ import dagger.Subcomponent;
  */
 
 @ActivityScope
-@Subcomponent(modules = {LoginActivityModule.class})
-public interface LoginActivityComponent {
+@Subcomponent(modules = {PresenterModule.class})
+public interface ActivityComponent {
     void inject(LoginActivity activity);
 }

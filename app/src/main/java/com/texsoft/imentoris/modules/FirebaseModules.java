@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -13,7 +15,7 @@ import dagger.Provides;
 
 @Module
 public class FirebaseModules {
-    // @Singleton
+    @Singleton
     @Provides
     FirebaseAuth firebaseAuth() {
         Log.v("FirebaseTest", "Create instance");
