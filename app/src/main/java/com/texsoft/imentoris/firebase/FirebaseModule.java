@@ -1,4 +1,4 @@
-package com.texsoft.imentoris.modules;
+package com.texsoft.imentoris.firebase;
 
 import android.util.Log;
 
@@ -10,15 +10,15 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by Rogerio Lavoro on 21/02/2017.
+ * Created by Rogerio Lavoro on 23/02/2017.
  */
-
 @Module
-public class FirebaseModules {
-    @Singleton
+public class FirebaseModule {
     @Provides
+    @Singleton
     FirebaseAuth firebaseAuth() {
-        Log.v("FirebaseTest", "Create instance");
+        Log.v("TestDagger", "Firebase module");
         return FirebaseAuth.getInstance();
     }
+
 }

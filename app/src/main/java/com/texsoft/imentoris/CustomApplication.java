@@ -1,33 +1,27 @@
 package com.texsoft.imentoris;
 
 import android.app.Application;
-import android.content.Context;
 
-import com.texsoft.imentoris.components.AppComponent;
-import com.texsoft.imentoris.components.DaggerAppComponent;
-import com.texsoft.imentoris.modules.AppModule;
+import com.texsoft.imentoris.firebase.FirebaseModule;
+
 
 /**
  * Created by Rogerio Lavoro on 21/02/2017.
  */
 
 public class CustomApplication extends Application {
-    private AppComponent appComponent;
-
+    private ApplicationComponent appComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        appComponent = DaggerAppComponent.builder()
-                      .appModule(new AppModule(this))
-                      .build();
+        appComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .firebaseModule(new FirebaseModule())
+                .build();
     }
 
-    public static  CustomApplication getCustomApplication(Context context){
-        return (CustomApplication) context.getApplicationContext();
-    }
-
-    public AppComponent getAppComponent() {
+    public ApplicationComponent getAppComponent() {
         return appComponent;
     }
 }

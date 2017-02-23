@@ -1,4 +1,4 @@
-package com.texsoft.imentoris.components;
+package com.texsoft.imentoris.util;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
