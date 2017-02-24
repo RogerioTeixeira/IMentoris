@@ -4,8 +4,6 @@ import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import javax.inject.Inject;
-
 /**
  * Created by Rogerio Lavoro on 22/02/2017.
  */
@@ -13,7 +11,6 @@ import javax.inject.Inject;
 public class LoginEmailPasswordIterator {
     private FirebaseAuth auth;
 
-    @Inject
     public LoginEmailPasswordIterator(FirebaseAuth auth) {
         this.auth = auth;
         if (auth != null) {

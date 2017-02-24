@@ -2,6 +2,7 @@ package com.texsoft.imentoris.views.login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.texsoft.imentoris.CustomApplication;
 import com.texsoft.imentoris.R;
@@ -10,7 +11,7 @@ import javax.inject.Inject;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     @Inject
-    LoginPresenter presenter;
+    LoginContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +21,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
                 .applicationComponent(((CustomApplication) getApplication()).getAppComponent())
                 .loginPresenterModule(new LoginPresenterModule(this))
                 .build().inject(this);
+        presenter.signInWithPassword("Rogerio", "Teixeira");
     }
 
     @Override
     public void onSuccess() {
-
+        Log.v("TestDagger", "Chiamata OnSuccess");
     }
 
     @Override
