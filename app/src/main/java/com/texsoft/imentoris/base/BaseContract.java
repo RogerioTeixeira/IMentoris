@@ -5,13 +5,13 @@ package com.texsoft.imentoris.base;
  */
 
 public interface BaseContract {
-    interface Presenter<T extends BaseView> {
+    interface Presenter<T extends View> {
         void onAttachView(T view);
 
         void onDetachView();
     }
 
-    interface BaseView {
+    interface View {
         void showDialogProgress();
 
         void hideDialogProgress();

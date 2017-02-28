@@ -18,7 +18,7 @@ public class LoginPresenterModule {
 
     @ActivityScope
     @Provides
-    public LoginPresenter getPresenter(LoginEmailPasswordIterator iterator) {
+    public LoginContract.Presenter getPresenter(LoginEmailPasswordIterator iterator) {
         Log.v("TestDagger", "LoginContract.Presenter");
         return new LoginPresenter(iterator);
     }
