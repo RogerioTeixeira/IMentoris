@@ -1,7 +1,5 @@
 package com.texsoft.imentoris.views.login;
 
-import com.texsoft.imentoris.BaseView;
-
 /**
  * Created by Rogerio Lavoro on 22/02/2017.
  */
@@ -11,7 +9,7 @@ public interface LoginContract {
         void onSuccess();
     }
 
-    interface Presenter {
+    interface Presenter extends BasePresenter<View> {
         void signInWithPassword(String email, String password);
     }
 

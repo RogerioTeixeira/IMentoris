@@ -13,15 +13,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Inject
     LoginContract.Presenter presenter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         DaggerLoginComponent.builder()
                 .applicationComponent(((CustomApplication) getApplication()).getAppComponent())
-                .loginPresenterModule(new LoginPresenterModule(this))
+                .loginPresenterModule(new LoginPresenterModule())
                 .build().inject(this);
-        presenter.signInWithPassword("Rogerio", "Teixeira");
     }
 
     @Override

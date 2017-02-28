@@ -15,24 +15,12 @@ import dagger.Provides;
 
 @Module
 public class LoginPresenterModule {
-    private LoginContract.View view;
-
-    public LoginPresenterModule(LoginContract.View view) {
-        this.view = view;
-    }
 
     @ActivityScope
     @Provides
-    public LoginContract.View getView() {
-        Log.v("TestDagger", "LoginContract");
-        return view;
-    }
-
-    @ActivityScope
-    @Provides
-    public LoginContract.Presenter getPresenter(LoginContract.View view, LoginEmailPasswordIterator iterator) {
+    public LoginPresenter getPresenter(LoginEmailPasswordIterator iterator) {
         Log.v("TestDagger", "LoginContract.Presenter");
-        return new LoginPresenter(view, iterator);
+        return new LoginPresenter(iterator);
     }
 
     @ActivityScope
