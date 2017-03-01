@@ -11,7 +11,6 @@ import com.texsoft.imentoris.iterator.LoginEmailPasswordIterator;
 
 public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter {
     private LoginEmailPasswordIterator iteratorLoginMail;
-    private LoginContract.View view;
 
     public LoginPresenter(LoginEmailPasswordIterator iteratorLoginMail) {
         this.iteratorLoginMail = iteratorLoginMail;

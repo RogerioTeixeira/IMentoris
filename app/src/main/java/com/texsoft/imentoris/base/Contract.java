@@ -4,7 +4,7 @@ package com.texsoft.imentoris.base;
  * Created by Rogerio Lavoro on 28/02/2017.
  */
 
-public interface BaseContract {
+public interface Contract {
     interface Presenter<T extends View> {
         void onAttachView(T view);
 
@@ -12,8 +12,8 @@ public interface BaseContract {
     }
 
     interface View {
-        void showDialogProgress();
+        void showLoadingDialog(String message);
 
-        void hideDialogProgress();
+        void dismissDialog();
     }
 }

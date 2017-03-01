@@ -4,9 +4,9 @@ package com.texsoft.imentoris.base;
  * Created by Rogerio Lavoro on 28/02/2017.
  */
 
-public abstract class BasePresenter<T extends BaseContract.View> implements BaseContract.Presenter<T> {
+public abstract class BasePresenter<T extends Contract.View> implements Contract.Presenter<T> {
 
-    private T view;
+    protected T view;
 
     @Override
     public void onAttachView(T view) {

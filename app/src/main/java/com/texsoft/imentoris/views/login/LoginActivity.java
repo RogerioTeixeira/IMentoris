@@ -1,25 +1,35 @@
 package com.texsoft.imentoris.views.login;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Button;
 
-import com.texsoft.imentoris.CustomApplication;
+import com.texsoft.imentoris.ApplicationComponent;
 import com.texsoft.imentoris.R;
+import com.texsoft.imentoris.base.BaseActivity;
 
-import javax.inject.Inject;
+import butterknife.BindView;
+import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements LoginContract.View {
-    @Inject
-    LoginContract.Presenter presenter;
+public class LoginActivity extends BaseActivity<LoginContract.Presenter> implements LoginContract.View {
 
+    @BindView(R.id.btn_prova)
+    Button btnProva;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    }
+
+    @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    protected void injectComponent(ApplicationComponent component) {
         DaggerLoginComponent.builder()
-                .applicationComponent(((CustomApplication) getApplication()).getAppComponent())
+                .applicationComponent(component)
                 .loginPresenterModule(new LoginPresenterModule())
                 .build().inject(this);
     }
@@ -29,13 +39,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         Log.v("TestDagger", "Chiamata OnSuccess");
     }
 
-    @Override
-    public void showDialogProgress() {
-
-    }
-
-    @Override
-    public void hideDialogProgress() {
-
+    @OnClick(R.id.btn_prova)
+    public void onClick() {
+        presenter.signInWithPassword("rogerio", "teixeira");
     }
 }
