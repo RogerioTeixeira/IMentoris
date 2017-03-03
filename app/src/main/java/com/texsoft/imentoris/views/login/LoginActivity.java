@@ -1,8 +1,11 @@
 package com.texsoft.imentoris.views.login;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.texsoft.imentoris.ApplicationComponent;
 import com.texsoft.imentoris.R;
@@ -13,8 +16,12 @@ import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity<LoginContract.Presenter> implements LoginContract.View {
 
-    @BindView(R.id.btn_prova)
+    @BindView(R.id.btn_login_email)
     Button btnProva;
+    @BindView(R.id.title_textview)
+    TextView titleTextview;
+    @BindView(R.id.activity_login)
+    RelativeLayout activityLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,8 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
                 .applicationComponent(component)
                 .loginPresenterModule(new LoginPresenterModule())
                 .build().inject(this);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/lobster.otf");
+        titleTextview.setTypeface(face);
     }
 
     @Override
@@ -39,7 +48,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
         Log.v("TestDagger", "Chiamata OnSuccess");
     }
 
-    @OnClick(R.id.btn_prova)
+    @OnClick(R.id.btn_login_email)
     public void onClick() {
         presenter.signInWithPassword("rogerio", "teixeira");
     }

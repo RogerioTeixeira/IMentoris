@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">IMentoris</string>
+    <string name="button_login">ACCEDI</string>
+    <string name="button_login_google">ACCEDI CON GOOGLE</string>
+    <string name="button_login_facebook">ACCEDI CON FACEBOOK</string>
+    <string name="button_create">Registrati</string>
+    <string name="password_recover">Non ricordi la tua password ?</string>
+    <string name="label_provider">Oppure</string>
+    <string name="create_account">Non hai ancora un account ? <b><u>Registrati</u></b></string>
 </resources>
