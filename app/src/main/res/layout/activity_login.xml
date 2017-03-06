@@ -43,9 +43,9 @@
                 android:id="@+id/email_input_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_mail_24dp"
+                android:drawableLeft="@drawable/email_selector"
                 android:drawablePadding="5dp"
-                android:drawableStart="@drawable/ic_mail_24dp"
+                android:drawableStart="@drawable/email_selector"
                 android:hint="Email"
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
@@ -62,9 +62,9 @@
                 android:id="@+id/password_input_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_lock_24dp"
+                android:drawableLeft="@drawable/password_selector"
                 android:drawablePadding="5dp"
-                android:drawableStart="@drawable/ic_lock_24dp"
+                android:drawableStart="@drawable/password_selector"
                 android:hint="Password"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_recover_password"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/button_default"
             android:text="@string/button_login" />
 

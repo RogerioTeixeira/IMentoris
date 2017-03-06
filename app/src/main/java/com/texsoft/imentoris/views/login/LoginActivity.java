@@ -1,8 +1,10 @@
 package com.texsoft.imentoris.views.login;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import com.texsoft.imentoris.ApplicationComponent;
 import com.texsoft.imentoris.R;
 import com.texsoft.imentoris.base.BaseActivity;
+import com.texsoft.imentoris.views.SignUpActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -22,6 +25,8 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
     TextView titleTextview;
     @BindView(R.id.activity_login)
     RelativeLayout activityLogin;
+    @BindView(R.id.text_create_account)
+    TextView textCreateAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +53,15 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
         Log.v("TestDagger", "Chiamata OnSuccess");
     }
 
-    @OnClick(R.id.btn_login_email)
-    public void onClick() {
-        presenter.signInWithPassword("rogerio", "teixeira");
+    @OnClick({R.id.btn_login_email, R.id.text_create_account})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_login_email:
+                break;
+            case R.id.text_create_account:
+                Intent intent = new Intent(this, SignUpActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }
