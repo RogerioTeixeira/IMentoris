@@ -1,4 +1,4 @@
-package com.texsoft.imentoris.views.login;
+package com.texsoft.imentoris.views.auth.signin;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,12 +12,12 @@ import android.widget.TextView;
 import com.texsoft.imentoris.ApplicationComponent;
 import com.texsoft.imentoris.R;
 import com.texsoft.imentoris.base.BaseActivity;
-import com.texsoft.imentoris.views.SignUpActivity;
+import com.texsoft.imentoris.views.auth.signup.SignUpActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity<LoginContract.Presenter> implements LoginContract.View {
+public class SignInActivity extends BaseActivity<SignInContract.Presenter, SignInComponent> implements SignInContract.View {
 
     @BindView(R.id.btn_login_email)
     Button btnProva;
@@ -31,6 +31,8 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/lobster.otf");
+        titleTextview.setTypeface(face);
     }
 
     @Override
@@ -39,13 +41,16 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
     }
 
     @Override
-    protected void injectComponent(ApplicationComponent component) {
-        DaggerLoginComponent.builder()
+    protected SignInComponent createComponent(ApplicationComponent component) {
+        return DaggerSignInComponent.builder()
                 .applicationComponent(component)
-                .loginPresenterModule(new LoginPresenterModule())
-                .build().inject(this);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/lobster.otf");
-        titleTextview.setTypeface(face);
+                .signInPresenterModule(new SignInPresenterModule())
+                .build();
+    }
+
+    @Override
+    protected void injectComponent(SignInComponent component) {
+        component.inject(this);
     }
 
     @Override

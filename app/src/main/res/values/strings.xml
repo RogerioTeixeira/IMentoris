@@ -7,4 +7,10 @@
     <string name="password_recover">Non ricordi la tua password ?</string>
     <string name="label_provider">Oppure</string>
     <string name="create_account">Non hai ancora un account ? <b><u>Registrati</u></b></string>
+    <string name="hint_name">Nome</string>
+    <string name="hint_password">Password(Minimo 6 caratteri)</string>
+    <string name="hint_email">Email</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

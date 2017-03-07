@@ -1,4 +1,4 @@
-package com.texsoft.imentoris.views.login;
+package com.texsoft.imentoris.views.auth.signin;
 
 import android.util.Log;
 
@@ -14,13 +14,13 @@ import dagger.Provides;
  */
 
 @Module
-public class LoginPresenterModule {
+public class SignInPresenterModule {
 
     @ActivityScope
     @Provides
-    public LoginContract.Presenter getPresenter(LoginEmailPasswordIterator iterator) {
-        Log.v("TestDagger", "LoginContract.Presenter");
-        return new LoginPresenter(iterator);
+    public SignInContract.Presenter getPresenter(LoginEmailPasswordIterator iterator) {
+        Log.v("TestDagger", "SignInContract.Presenter");
+        return new SignInPresenter(iterator);
     }
 
     @ActivityScope

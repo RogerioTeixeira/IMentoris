@@ -1,4 +1,4 @@
-package com.texsoft.imentoris.views.login;
+package com.texsoft.imentoris.views.auth.signin;
 
 import com.texsoft.imentoris.base.Contract;
 
@@ -6,7 +6,7 @@ import com.texsoft.imentoris.base.Contract;
  * Created by Rogerio Lavoro on 22/02/2017.
  */
 
-public interface LoginContract {
+public interface SignInContract {
     interface View extends Contract.View {
         void onSuccess();
     }
