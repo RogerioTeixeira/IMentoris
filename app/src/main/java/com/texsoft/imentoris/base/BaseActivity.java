@@ -21,8 +21,11 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity<T extends Contract.Presenter, V extends ApplicationComponent> extends AppCompatActivity implements Contract.View {
     private final String TAG_FRAGMENT_RETAIN = "FRAGGMENT_RETAIN";
+
     @Inject
     protected T presenter;
+
+
     protected V component;
     private ProgressDialog progressDialog;
     private RetainFragment<V> retainFragment;
