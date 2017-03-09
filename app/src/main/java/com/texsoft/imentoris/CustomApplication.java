@@ -21,7 +21,7 @@ public class CustomApplication extends Application {
                 .build();
     }
 
-    public ApplicationComponent getAppComponent() {
+    public ApplicationComponent getApplicationComponent() {
         return appComponent;
     }
 }

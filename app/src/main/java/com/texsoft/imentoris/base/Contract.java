@@ -15,5 +15,7 @@ public interface Contract {
         void showLoadingDialog(String message);
 
         void dismissDialog();
+
+        void showToastMessage(String message);
     }
 }

@@ -3,21 +3,20 @@ package com.texsoft.imentoris.views.auth.signin;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.texsoft.imentoris.ApplicationComponent;
 import com.texsoft.imentoris.R;
 import com.texsoft.imentoris.base.BaseActivity;
+import com.texsoft.imentoris.base.HasComponent;
 import com.texsoft.imentoris.views.auth.signup.SignUpActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SignInActivity extends BaseActivity<SignInContract.Presenter, SignInComponent> implements SignInContract.View {
+public class SignInActivity extends BaseActivity implements HasComponent<SignInComponent> {
 
     @BindView(R.id.btn_login_email)
     Button btnProva;
@@ -27,6 +26,8 @@ public class SignInActivity extends BaseActivity<SignInContract.Presenter, SignI
     RelativeLayout activityLogin;
     @BindView(R.id.text_create_account)
     TextView textCreateAccount;
+
+    private SignInComponent component;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,21 +42,18 @@ public class SignInActivity extends BaseActivity<SignInContract.Presenter, SignI
     }
 
     @Override
-    protected SignInComponent createComponent(ApplicationComponent component) {
-        return DaggerSignInComponent.builder()
-                .applicationComponent(component)
-                .signInPresenterModule(new SignInPresenterModule())
-                .build();
+    public SignInComponent getComponent() {
+        if (component == null) {
+            component = DaggerSignInComponent.builder()
+                    .applicationComponent(getApplicationComponent())
+                    .signInPresenterModule(new SignInPresenterModule())
+                    .build();
+        }
+        return component;
     }
 
-    @Override
     protected void injectComponent(SignInComponent component) {
         component.inject(this);
-    }
-
-    @Override
-    public void onSuccess() {
-        Log.v("TestDagger", "Chiamata OnSuccess");
     }
 
     @OnClick({R.id.btn_login_email, R.id.text_create_account})
