@@ -10,13 +10,12 @@ import android.widget.TextView;
 
 import com.texsoft.imentoris.R;
 import com.texsoft.imentoris.base.BaseActivity;
-import com.texsoft.imentoris.base.HasComponent;
 import com.texsoft.imentoris.views.auth.signup.SignUpActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SignInActivity extends BaseActivity implements HasComponent<SignInComponent> {
+public class SignInActivity extends BaseActivity {
 
     @BindView(R.id.btn_login_email)
     Button btnProva;
@@ -26,8 +25,6 @@ public class SignInActivity extends BaseActivity implements HasComponent<SignInC
     RelativeLayout activityLogin;
     @BindView(R.id.text_create_account)
     TextView textCreateAccount;
-
-    private SignInComponent component;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +36,6 @@ public class SignInActivity extends BaseActivity implements HasComponent<SignInC
     @Override
     protected int getLayoutResource() {
         return R.layout.activity_login;
-    }
-
-    @Override
-    public SignInComponent getComponent() {
-        if (component == null) {
-            component = DaggerSignInComponent.builder()
-                    .applicationComponent(getApplicationComponent())
-                    .signInPresenterModule(new SignInPresenterModule())
-                    .build();
-        }
-        return component;
-    }
-
-    protected void injectComponent(SignInComponent component) {
-        component.inject(this);
     }
 
     @OnClick({R.id.btn_login_email, R.id.text_create_account})

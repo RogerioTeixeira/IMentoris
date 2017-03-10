@@ -1,4 +1,4 @@
-package com.texsoft.imentoris;
+package com.texsoft.imentoris.modules;
 
 import android.app.Application;
 import android.util.Log;

@@ -1,6 +1,6 @@
 package com.texsoft.imentoris.base;
 
-import com.texsoft.imentoris.ApplicationComponent;
+import com.texsoft.imentoris.components.ApplicationComponent;
 
 /**
  * Created by Rogerio Lavoro on 09/03/2017.

@@ -2,7 +2,10 @@ package com.texsoft.imentoris;
 
 import android.app.Application;
 
+import com.texsoft.imentoris.components.ApplicationComponent;
+import com.texsoft.imentoris.components.DaggerApplicationComponent;
 import com.texsoft.imentoris.firebase.FirebaseModule;
+import com.texsoft.imentoris.modules.ApplicationModule;
 
 
 /**

@@ -1,7 +1,8 @@
-package com.texsoft.imentoris;
+package com.texsoft.imentoris.components;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.texsoft.imentoris.firebase.FirebaseModule;
+import com.texsoft.imentoris.modules.ApplicationModule;
 
 import javax.inject.Singleton;
 

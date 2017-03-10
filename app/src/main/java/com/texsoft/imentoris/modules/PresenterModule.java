@@ -1,10 +1,12 @@
-package com.texsoft.imentoris.views.auth.signin;
+package com.texsoft.imentoris.modules;
 
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.texsoft.imentoris.iterator.LoginEmailPasswordIterator;
-import com.texsoft.imentoris.util.ActivityScope;
+import com.texsoft.imentoris.util.PerActivity;
+import com.texsoft.imentoris.views.auth.signin.SignInContract;
+import com.texsoft.imentoris.views.auth.signin.SignInPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,16 +16,16 @@ import dagger.Provides;
  */
 
 @Module
-public class SignInPresenterModule {
+public class PresenterModule {
 
-    @ActivityScope
+    @PerActivity
     @Provides
     public SignInContract.Presenter getPresenter(LoginEmailPasswordIterator iterator) {
         Log.v("TestDagger", "SignInContract.Presenter");
         return new SignInPresenter(iterator);
     }
 
-    @ActivityScope
+    @PerActivity
     @Provides
     public LoginEmailPasswordIterator getIterator(FirebaseAuth auth) {
         Log.v("TestDagger", "LoginEmailPasswordIterator");

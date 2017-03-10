@@ -8,8 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.texsoft.imentoris.ApplicationComponent;
 import com.texsoft.imentoris.CustomApplication;
+import com.texsoft.imentoris.components.ApplicationComponent;
 
 import butterknife.ButterKnife;
 
@@ -43,11 +43,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Contract
     }
 
     @Override
-    public void showToastMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void onPause() {
         super.onPause();
     }
@@ -69,6 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Contract
         progressDialog = ProgressDialog.show(this, "", message, true);
     }
 
+    @Override
     public void showLoadingDialog(@StringRes int stringResource) {
         showLoadingDialog(getString(stringResource));
     }
@@ -79,6 +75,16 @@ public abstract class BaseActivity extends AppCompatActivity implements Contract
             progressDialog.dismiss();
             progressDialog = null;
         }
+    }
+
+    @Override
+    public void showToastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showToastMessage(@StringRes int stringResource) {
+        Toast.makeText(this, getString(stringResource), Toast.LENGTH_SHORT).show();
     }
 
 
