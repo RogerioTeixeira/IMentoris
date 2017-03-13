@@ -17,14 +17,9 @@ import com.texsoft.imentoris.components.DaggerFragmentComponent;
 import com.texsoft.imentoris.components.FragmentComponent;
 import com.texsoft.imentoris.modules.PresenterModule;
 
-import javax.inject.Inject;
-
 import butterknife.ButterKnife;
 
-public abstract class BaseFragment<T extends Contract.Presenter> extends Fragment implements Contract.View {
-
-    @Inject
-    protected T presenter;
+public abstract class BaseFragment extends Fragment implements Contract.View {
 
     private ProgressDialog progressDialog;
 
@@ -34,7 +29,7 @@ public abstract class BaseFragment<T extends Contract.Presenter> extends Fragmen
 
     protected abstract int getLayoutResource();
 
-    protected abstract int inject(FragmentComponent component);
+    protected abstract void inject(FragmentComponent component);
 
     @Override
     public void showLoadingDialog(String message) {
@@ -77,6 +72,7 @@ public abstract class BaseFragment<T extends Contract.Presenter> extends Fragmen
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         inject(getFragmentComponent());
     }
 
@@ -91,16 +87,4 @@ public abstract class BaseFragment<T extends Contract.Presenter> extends Fragmen
         return ((CustomApplication) getActivity().getApplication()).getApplicationComponent();
     }
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        presenter.onAttachView(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        presenter.onDetachView();
-    }
 }
