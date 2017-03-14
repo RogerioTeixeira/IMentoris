@@ -7,12 +7,11 @@ import android.support.annotation.StringRes;
  */
 
 public interface Contract {
-    interface Presenter<T extends View> {
-        void onAttachView(T view);
+    interface Presenter {
+        void onStart();
 
-        void onDetachView();
+        void onStop();
     }
-
     interface View {
         void showLoadingDialog(String message);
 

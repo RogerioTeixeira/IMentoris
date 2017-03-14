@@ -26,7 +26,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignInFragment extends BaseFragment implements SignInContract.View {
+public class SignInFragment extends BaseFragment {
 
     @BindView(R.id.title_textview)
     TextView titleTextview;
@@ -93,21 +93,16 @@ public class SignInFragment extends BaseFragment implements SignInContract.View 
     }
 
     @Override
-    public void onSuccess() {
-        Log.v("TestDagger", "Login avvenuto scon successo");
-    }
-
-    @Override
     public void onStart() {
         super.onStart();
+        presenter.onStart();
         Log.v("TestDagger", "Fragment onStart");
-        presenter.onAttachView(this);
     }
 
     @Override
     public void onStop() {
+        presenter.onStop();
         super.onStop();
         Log.v("TestDagger", "Fragment onStop");
-        presenter.onDetachView();
     }
 }

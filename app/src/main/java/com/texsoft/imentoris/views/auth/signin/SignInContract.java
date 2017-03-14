@@ -11,7 +11,7 @@ public interface SignInContract {
         void onSuccess();
     }
 
-    interface Presenter extends Contract.Presenter<SignInContract.View> {
+    interface Presenter extends Contract.Presenter {
         void signInWithPassword(String email, String password);
     }
 

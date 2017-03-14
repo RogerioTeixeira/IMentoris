@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 
 import com.texsoft.imentoris.R;
 import com.texsoft.imentoris.base.BaseActivity;
+import com.texsoft.imentoris.components.ActivityComponent;
 
 public class SignInActivity extends BaseActivity {
 
@@ -15,6 +16,11 @@ public class SignInActivity extends BaseActivity {
             Fragment fragment = new SignInFragment();
             addFragment(R.id.fragmentContainer, fragment);
         }
+    }
+
+    @Override
+    protected void inject(ActivityComponent component) {
+        component.inject(this);
     }
 
     @Override

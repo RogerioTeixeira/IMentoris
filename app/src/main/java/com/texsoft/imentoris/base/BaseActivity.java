@@ -9,7 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.texsoft.imentoris.CustomApplication;
+import com.texsoft.imentoris.components.ActivityComponent;
 import com.texsoft.imentoris.components.ApplicationComponent;
+import com.texsoft.imentoris.components.DaggerActivityComponent;
+import com.texsoft.imentoris.events.EventProgressDialog;
+import com.texsoft.imentoris.modules.ActivityModule;
+import com.texsoft.imentoris.modules.PresenterModule;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 
@@ -23,6 +32,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Contract
 
     protected abstract int getLayoutResource();
 
+    protected abstract void inject(ActivityComponent component);
+
     protected void addFragment(int containerViewId, Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .add(containerViewId, fragment)
@@ -33,6 +44,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Contract
         return (((CustomApplication) getApplication()).getApplicationComponent());
     }
 
+    protected ActivityComponent getActivityComponent() {
+        return DaggerActivityComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .presenterModule(new PresenterModule())
+                .activityModule(new ActivityModule(this))
+                .build();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Contract
             setContentView(getLayoutResource());
             ButterKnife.bind(this);
         }
+        inject(getActivityComponent());
     }
 
     @Override
@@ -50,18 +70,25 @@ public abstract class BaseActivity extends AppCompatActivity implements Contract
     @Override
     protected void onStart() {
         super.onStart();
+        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onStop() {
-        super.onStop();
+        EventBus.getDefault().unregister(this);
         dismissDialog();
+        super.onStop();
     }
 
     @Override
     public void showLoadingDialog(String message) {
         dismissDialog();
         progressDialog = ProgressDialog.show(this, "", message, true);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void OnEvent(EventProgressDialog e) {
+
     }
 
     @Override

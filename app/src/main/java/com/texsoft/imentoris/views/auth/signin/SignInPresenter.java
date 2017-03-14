@@ -9,7 +9,7 @@ import com.texsoft.imentoris.iterator.LoginEmailPasswordIterator;
  * Created by Rogerio Lavoro on 23/02/2017.
  */
 
-public class SignInPresenter extends BasePresenter<SignInContract.View> implements SignInContract.Presenter {
+public class SignInPresenter extends BasePresenter implements SignInContract.Presenter {
     private LoginEmailPasswordIterator iteratorLoginMail;
 
     public SignInPresenter(LoginEmailPasswordIterator iteratorLoginMail) {
@@ -20,6 +20,6 @@ public class SignInPresenter extends BasePresenter<SignInContract.View> implemen
 
     @Override
     public void signInWithPassword(String email, String password) {
-        view.onSuccess();
+
     }
 }
