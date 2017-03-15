@@ -2,6 +2,7 @@ package com.texsoft.imentoris.base;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -85,7 +86,7 @@ public abstract class BaseFragment extends Fragment implements Contract.View {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         inject(getFragmentComponent());
-        Log.v("AdaperPager", "Fragment create" + this.getClass().getName());
+        Log.v("AdaperPager", "Fragment create:" + this.getClass().getName());
     }
 
     protected FragmentComponent getFragmentComponent() {
@@ -104,6 +105,12 @@ public abstract class BaseFragment extends Fragment implements Contract.View {
         super.onStart();
         Log.v("AdaperPager", "Fragment onStart:" + this.getClass().getName());
         EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.v("AdaperPager", "Fragment onAttach:" + this.getClass().getName());
     }
 
     @Override

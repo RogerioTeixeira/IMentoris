@@ -1,9 +1,9 @@
-package com.texsoft.imentoris;
+package com.texsoft.imentoris.adapters;
 
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Rogerio Lavoro on 14/03/2017.
  */
 
-public class ViewPageAdapter extends FragmentPagerAdapter {
+public class ViewPageAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> fragments = new ArrayList<>();
 
     public ViewPageAdapter(FragmentManager fm) {

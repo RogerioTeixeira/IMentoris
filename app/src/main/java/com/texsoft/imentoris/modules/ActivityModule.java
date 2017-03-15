@@ -5,7 +5,7 @@ import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.texsoft.imentoris.ViewPageAdapter;
+import com.texsoft.imentoris.adapters.ViewPageAdapter;
 
 import dagger.Module;
 import dagger.Provides;
