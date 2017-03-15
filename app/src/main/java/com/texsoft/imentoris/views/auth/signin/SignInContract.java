@@ -1,5 +1,7 @@
 package com.texsoft.imentoris.views.auth.signin;
 
+import android.app.Activity;
+
 import com.texsoft.imentoris.base.Contract;
 
 /**
@@ -12,7 +14,7 @@ public interface SignInContract {
     }
 
     interface Presenter extends Contract.Presenter {
-        void signInWithPassword(String email, String password);
+        void signInWithPassword(String email, String password, Activity activity);
     }
 
 }

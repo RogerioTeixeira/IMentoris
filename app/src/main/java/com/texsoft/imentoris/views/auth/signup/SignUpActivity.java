@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
@@ -12,8 +13,8 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.texsoft.imentoris.R;
 import com.texsoft.imentoris.adapters.ViewPageAdapter;
 import com.texsoft.imentoris.base.BaseActivity;
+import com.texsoft.imentoris.base.BaseEvent;
 import com.texsoft.imentoris.components.ActivityComponent;
-import com.texsoft.imentoris.events.EventChangeRole;
 import com.texsoft.imentoris.widgets.ViewPagerNoSwipe;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -25,14 +26,14 @@ import butterknife.BindView;
 
 public class SignUpActivity extends BaseActivity {
 
-    static final String EXTRA_PARAM = "PARAM_EXTRA";
+    private static final String EXTRA_PARAM = "PARAM_EXTRA";
     @Inject
     ViewPageAdapter viewPageAdapter;
-
     @BindView(R.id.viewpager)
     ViewPagerNoSwipe viewpager;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    private InputMethodManager inputMethodManager;
 
     public static void startActivity(String provider, Activity activity) {
         Intent intent = new Intent(activity, SignUpActivity.class);
@@ -59,9 +60,28 @@ public class SignUpActivity extends BaseActivity {
             viewPageAdapter.setFragments(getSupportFragmentManager().getFragments());
         }
 
-        viewpager.setAdapter(viewPageAdapter);
-        setCurrentpage(viewpager.getCurrentItem());
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
+        viewpager.setAdapter(viewPageAdapter);
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (inputMethodManager.isAcceptingText()) ;
+                inputMethodManager.hideSoftInputFromWindow(viewpager.getWindowToken(), 0);
+
+                getWindow().getCurrentFocus().clearFocus();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -83,30 +103,20 @@ public class SignUpActivity extends BaseActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void OnEvent(EventChangeRole e) {
-        setCurrentpage(viewpager.getCurrentItem() + 1);
+    public void OnEvent(BaseEvent<String> e) {
+        if (!e.isEventFor(this)) {
+            return;
+        }
+        viewpager.setCurrentItem(viewpager.getCurrentItem() + 1);
     }
 
-    public void setCurrentpage(int page) {
-        viewpager.setCurrentItem(page);
-        switch (page) {
-            case 0:
-                getSupportActionBar().setTitle("Scegli ruolo");
-                break;
-            case 1:
-                getSupportActionBar().setTitle("Dati personali");
-                break;
-        }
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(viewpager.getWindowToken(), 0);
-    }
 
     @Override
     public void onBackPressed() {
         if (viewpager.getCurrentItem() == 0) {
             finish();
         } else {
-            setCurrentpage(viewpager.getCurrentItem() - 1);
+            viewpager.setCurrentItem(viewpager.getCurrentItem() - 1);
         }
     }
 }

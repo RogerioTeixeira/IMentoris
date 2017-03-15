@@ -1,15 +1,17 @@
 package com.texsoft.imentoris.views.auth.signup;
 
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.texsoft.imentoris.R;
+import com.texsoft.imentoris.base.BaseEvent;
 import com.texsoft.imentoris.base.BaseFragment;
 import com.texsoft.imentoris.components.FragmentComponent;
-import com.texsoft.imentoris.events.EventChangeRole;
 import com.texsoft.imentoris.util.Roles;
 
 import org.greenrobot.eventbus.EventBus;
@@ -43,15 +45,36 @@ public class ChooseRoleFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (getUserVisibleHint()) {
+            setTitleToolBar(R.string.title_choose_fragment);
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isResumed() && isVisibleToUser) {
+            setTitleToolBar(R.string.title_register_fragment);
+        }
+
+    }
+
     @OnClick({R.id.imageStudent, R.id.imageTeacher})
     public void onClick(View view) {
+        BaseEvent<String> event = new BaseEvent<>();
+        event.addClassFilter(SignUpActivity.class);
+        event.addClassFilter(RegisterEmailFragment.class);
         switch (view.getId()) {
             case R.id.imageStudent:
-                EventBus.getDefault().post(new EventChangeRole(Roles.STUDENT));
+                event.setData(Roles.STUDENT);
                 break;
             case R.id.imageTeacher:
-                EventBus.getDefault().post(new EventChangeRole(Roles.TEACHER));
+                event.setData(Roles.TEACHER);
                 break;
         }
+        EventBus.getDefault().post(event);
     }
 }

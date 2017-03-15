@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,6 +80,13 @@ public abstract class BaseFragment extends Fragment implements Contract.View {
         View view = inflater.inflate(getLayoutResource(), container, false);
         ButterKnife.bind(this, view);
         return view;
+    }
+
+    public void setTitleToolBar(@StringRes int res) {
+        if (getActivity() instanceof AppCompatActivity) {
+            String title = getString(res);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
+        }
     }
 
     @Override
