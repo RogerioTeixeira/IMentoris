@@ -9,10 +9,10 @@ import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 
 import com.texsoft.imentoris.R;
-import com.texsoft.imentoris.base.BaseEvent;
 import com.texsoft.imentoris.base.BaseFragment;
 import com.texsoft.imentoris.components.FragmentComponent;
-import com.texsoft.imentoris.util.Roles;
+import com.texsoft.imentoris.events.DataChangeEvent;
+import com.texsoft.imentoris.util.enums.Role;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -40,6 +40,8 @@ public class RegisterEmailFragment extends BaseFragment {
     @BindView(R.id.name_input_layout)
     TextInputLayout nameInputLayout;
 
+    private Role role;
+
     public RegisterEmailFragment() {
         // Required empty public constructor
     }
@@ -55,25 +57,29 @@ public class RegisterEmailFragment extends BaseFragment {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void OnEvent(BaseEvent<String> e) {
-        if (!e.isEventFor(this)) {
-            return;
-        }
-        switch (e.getData()) {
-            case Roles.STUDENT:
+    public void OnEvent(DataChangeEvent<Role> e) {
+        role = e.getData();
+        setAvatar();
+    }
+
+    public void setAvatar() {
+        switch (role) {
+            case STUDENT:
                 imageView.setImageResource(R.drawable.students);
                 break;
-            case Roles.TEACHER:
+            case TEACHER:
                 imageView.setImageResource(R.drawable.teacher);
                 break;
         }
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (getUserVisibleHint()) {
             setTitleToolBar(R.string.title_register_fragment);
+            setAvatar();
         }
     }
 

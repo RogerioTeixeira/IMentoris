@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.auth.EmailAuthProvider;
 import com.texsoft.imentoris.R;
 import com.texsoft.imentoris.base.BaseFragment;
 import com.texsoft.imentoris.components.FragmentComponent;
@@ -79,14 +78,14 @@ public class SignInFragment extends BaseFragment {
             case R.id.text_recover_password:
                 break;
             case R.id.btn_login_email:
-                presenter.signInWithPassword("Rogerio", "xrte1982");
+                presenter.signInWithPassword("Rogerio", "xrte1982", getActivity());
                 break;
             case R.id.btn_google:
                 break;
             case R.id.btn_facebook:
                 break;
             case R.id.text_create_account:
-                SignUpActivity.startActivity(EmailAuthProvider.PROVIDER_ID, getActivity());
+                SignUpActivity.startActivity(getActivity());
                 break;
         }
     }

@@ -7,8 +7,7 @@ import java.util.List;
  * Created by Rogerio Lavoro on 15/03/2017.
  */
 
-public class BaseEvent<T> {
-    private T data;
+public class BaseEvent {
 
     private List<Class<?>> classReceiverList = new ArrayList<>();
 
@@ -21,13 +20,5 @@ public class BaseEvent<T> {
             return true;
         }
         return classReceiverList.contains(obj.getClass());
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
     }
 }

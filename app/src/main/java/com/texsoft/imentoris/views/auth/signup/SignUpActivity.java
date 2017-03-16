@@ -9,12 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 
-import com.google.firebase.auth.EmailAuthProvider;
 import com.texsoft.imentoris.R;
-import com.texsoft.imentoris.adapters.ViewPageAdapter;
+import com.texsoft.imentoris.adapters.PagerAdapterSignUp;
 import com.texsoft.imentoris.base.BaseActivity;
-import com.texsoft.imentoris.base.BaseEvent;
 import com.texsoft.imentoris.components.ActivityComponent;
+import com.texsoft.imentoris.events.PageChangeEvent;
 import com.texsoft.imentoris.widgets.ViewPagerNoSwipe;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -28,16 +27,17 @@ public class SignUpActivity extends BaseActivity {
 
     private static final String EXTRA_PARAM = "PARAM_EXTRA";
     @Inject
-    ViewPageAdapter viewPageAdapter;
+    PagerAdapterSignUp viewPageAdapter;
+
     @BindView(R.id.viewpager)
     ViewPagerNoSwipe viewpager;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     private InputMethodManager inputMethodManager;
 
-    public static void startActivity(String provider, Activity activity) {
+    public static void startActivity(Activity activity) {
         Intent intent = new Intent(activity, SignUpActivity.class);
-        intent.putExtra(EXTRA_PARAM, provider);
+        //intent.putExtra(EXTRA_PARAM, provider);
         activity.startActivity(intent);
     }
 
@@ -48,21 +48,10 @@ public class SignUpActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        Bundle b = getIntent().getExtras();
-        String provideId = b.getString(EXTRA_PARAM);
-
-        if (savedInstanceState == null) {
-            viewPageAdapter.addFragment(new ChooseRoleFragment());
-            if (provideId.equalsIgnoreCase(EmailAuthProvider.PROVIDER_ID)) {
-                viewPageAdapter.addFragment(new RegisterEmailFragment());
-            }
-        } else {
-            viewPageAdapter.setFragments(getSupportFragmentManager().getFragments());
-        }
+        viewpager.setAdapter(viewPageAdapter);
 
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        viewpager.setAdapter(viewPageAdapter);
         viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -71,10 +60,9 @@ public class SignUpActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if (inputMethodManager.isAcceptingText()) ;
-                inputMethodManager.hideSoftInputFromWindow(viewpager.getWindowToken(), 0);
-
-                getWindow().getCurrentFocus().clearFocus();
+                if (inputMethodManager.isAcceptingText())
+                    inputMethodManager.hideSoftInputFromWindow(viewpager.getWindowToken(), 0);
+                viewpager.clearFocus();
             }
 
             @Override
@@ -103,11 +91,15 @@ public class SignUpActivity extends BaseActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void OnEvent(BaseEvent<String> e) {
-        if (!e.isEventFor(this)) {
-            return;
+    public void OnEvent(PageChangeEvent e) {
+        switch (e.getPage()) {
+            case AVANTI:
+                viewpager.setCurrentItem(viewpager.getCurrentItem() + 1);
+                break;
+            case INDIETRO:
+                viewpager.setCurrentItem(viewpager.getCurrentItem() - 1);
+                break;
         }
-        viewpager.setCurrentItem(viewpager.getCurrentItem() + 1);
     }
 
 
@@ -119,4 +111,5 @@ public class SignUpActivity extends BaseActivity {
             viewpager.setCurrentItem(viewpager.getCurrentItem() - 1);
         }
     }
+
 }

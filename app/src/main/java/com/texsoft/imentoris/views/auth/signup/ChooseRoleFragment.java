@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.texsoft.imentoris.R;
-import com.texsoft.imentoris.base.BaseEvent;
 import com.texsoft.imentoris.base.BaseFragment;
 import com.texsoft.imentoris.components.FragmentComponent;
-import com.texsoft.imentoris.util.Roles;
+import com.texsoft.imentoris.events.DataChangeEvent;
+import com.texsoft.imentoris.events.PageChangeEvent;
+import com.texsoft.imentoris.util.enums.Page;
+import com.texsoft.imentoris.util.enums.Role;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -64,17 +66,14 @@ public class ChooseRoleFragment extends BaseFragment {
 
     @OnClick({R.id.imageStudent, R.id.imageTeacher})
     public void onClick(View view) {
-        BaseEvent<String> event = new BaseEvent<>();
-        event.addClassFilter(SignUpActivity.class);
-        event.addClassFilter(RegisterEmailFragment.class);
         switch (view.getId()) {
             case R.id.imageStudent:
-                event.setData(Roles.STUDENT);
+                EventBus.getDefault().post(new DataChangeEvent<Role>(Role.STUDENT));
                 break;
             case R.id.imageTeacher:
-                event.setData(Roles.TEACHER);
+                EventBus.getDefault().post(new DataChangeEvent<Role>(Role.TEACHER));
                 break;
         }
-        EventBus.getDefault().post(event);
+        EventBus.getDefault().post(new PageChangeEvent(Page.AVANTI));
     }
 }

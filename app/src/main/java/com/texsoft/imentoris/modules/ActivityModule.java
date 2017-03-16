@@ -5,7 +5,7 @@ import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.texsoft.imentoris.adapters.ViewPageAdapter;
+import com.texsoft.imentoris.adapters.PagerAdapterSignUp;
 
 import dagger.Module;
 import dagger.Provides;
@@ -33,7 +33,7 @@ public class ActivityModule {
     }
 
     @Provides
-    public ViewPageAdapter getViewPageAdapter(FragmentManager fm) {
-        return new ViewPageAdapter(fm);
+    public PagerAdapterSignUp getViewPageAdapter(FragmentManager fm) {
+        return new PagerAdapterSignUp(fm);
     }
 }
