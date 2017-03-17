@@ -32,7 +32,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Contract
 
     protected abstract int getLayoutResource();
 
-    protected abstract void inject(ActivityComponent component);
+    protected void inject(ActivityComponent component) {
+
+    }
 
     protected void addFragment(int containerViewId, Fragment fragment) {
         getSupportFragmentManager().beginTransaction()

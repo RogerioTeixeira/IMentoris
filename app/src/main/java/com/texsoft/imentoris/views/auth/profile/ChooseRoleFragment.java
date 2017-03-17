@@ -1,4 +1,4 @@
-package com.texsoft.imentoris.views.auth.signup;
+package com.texsoft.imentoris.views.auth.profile;
 
 
 import android.os.Bundle;

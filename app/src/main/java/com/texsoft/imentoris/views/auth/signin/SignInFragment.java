@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.texsoft.imentoris.R;
 import com.texsoft.imentoris.base.BaseFragment;
 import com.texsoft.imentoris.components.FragmentComponent;
-import com.texsoft.imentoris.views.auth.signup.SignUpActivity;
+import com.texsoft.imentoris.views.auth.profile.WizardProfileActivity;
 
 import javax.inject.Inject;
 
@@ -85,7 +85,7 @@ public class SignInFragment extends BaseFragment {
             case R.id.btn_facebook:
                 break;
             case R.id.text_create_account:
-                SignUpActivity.startActivity(getActivity());
+                WizardProfileActivity.startActivity(getActivity());
                 break;
         }
     }
