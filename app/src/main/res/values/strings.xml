@@ -17,4 +17,9 @@
     <string name="title_choose_fragment">Scegli Ruolo</string>
     <string name="title_register_fragment">Dati personali</string>
 
+    <!-- Messaggi di errore -->
+    <string name="error_email_valid">Indirizzo email non valido</string>
+    <string name="error_password_valid">Password non valida</string>
+
+
 </resources>

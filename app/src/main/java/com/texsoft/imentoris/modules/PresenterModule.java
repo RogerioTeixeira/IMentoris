@@ -6,6 +6,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.texsoft.imentoris.util.PerActivity;
 import com.texsoft.imentoris.views.auth.signin.SignInContract;
 import com.texsoft.imentoris.views.auth.signin.SignInPresenter;
+import com.texsoft.imentoris.views.auth.signup.SignUpContract;
+import com.texsoft.imentoris.views.auth.signup.SignUpPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,9 +21,16 @@ public class PresenterModule {
 
     @PerActivity
     @Provides
-    public SignInContract.Presenter getPresenter(FirebaseAuth auth) {
+    public SignInContract.Presenter getSignInPresenter(FirebaseAuth auth) {
         Log.v("TestDagger", "SignInContract.Presenter");
         return new SignInPresenter(auth);
+    }
+
+    @PerActivity
+    @Provides
+    public SignUpContract.Presenter getSignUpPresenter(FirebaseAuth auth) {
+        Log.v("TestDagger", "SignInContract.Presenter");
+        return new SignUpPresenter(auth);
     }
 
 

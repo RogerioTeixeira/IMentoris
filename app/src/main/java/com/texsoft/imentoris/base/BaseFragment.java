@@ -18,8 +18,10 @@ import com.texsoft.imentoris.CustomApplication;
 import com.texsoft.imentoris.components.ApplicationComponent;
 import com.texsoft.imentoris.components.DaggerFragmentComponent;
 import com.texsoft.imentoris.components.FragmentComponent;
-import com.texsoft.imentoris.events.EventProgressDialog;
+import com.texsoft.imentoris.events.ProgressDialogEvent;
+import com.texsoft.imentoris.events.ShowToastEvent;
 import com.texsoft.imentoris.modules.PresenterModule;
+import com.texsoft.imentoris.util.Validator;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -69,7 +71,37 @@ public abstract class BaseFragment extends Fragment implements Contract.View {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void OnEvent(EventProgressDialog e) {
+    public void OnEvent(ProgressDialogEvent e) {
+        if (!e.isEventFor(this.getClass()))
+            return;
+
+        switch (e.dialogState) {
+            case HIDE:
+                dismissDialog();
+                break;
+            case SHOW:
+                if (e.getMessageRes() != 0) {
+                    showLoadingDialog(e.getMessageRes());
+                } else if (!Validator.isEmpty(e.getMessage())) {
+                    showLoadingDialog(e.getMessage());
+                } else {
+                    showLoadingDialog("");
+                }
+                break;
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void OnEvent(ShowToastEvent e) {
+        if (!e.isEventFor(this.getClass()))
+            return;
+
+        if (e.getMessageRes() != 0) {
+            showToastMessage(e.getMessageRes());
+        } else if (!Validator.isEmpty(e.getMessage())) {
+            showToastMessage(e.getMessage());
+        }
+
 
     }
 

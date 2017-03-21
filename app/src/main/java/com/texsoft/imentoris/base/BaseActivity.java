@@ -12,7 +12,7 @@ import com.texsoft.imentoris.CustomApplication;
 import com.texsoft.imentoris.components.ActivityComponent;
 import com.texsoft.imentoris.components.ApplicationComponent;
 import com.texsoft.imentoris.components.DaggerActivityComponent;
-import com.texsoft.imentoris.events.EventProgressDialog;
+import com.texsoft.imentoris.events.ProgressDialogEvent;
 import com.texsoft.imentoris.modules.ActivityModule;
 import com.texsoft.imentoris.modules.PresenterModule;
 
@@ -89,7 +89,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Contract
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void OnEvent(EventProgressDialog e) {
+    public void OnEvent(ProgressDialogEvent e) {
 
     }
 
