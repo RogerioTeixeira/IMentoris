@@ -83,8 +83,9 @@ public class SignUpFragment extends BaseFragment {
             passwordInputLayout.setErrorEnabled(false);
         }
         String name = nameInputEdit.getText().toString();
-        hideSoftInput(nameInputEdit);
+
         if (isValid)
+            hideSoftInput();
             presenter.signUpWithPassword(email, password, name, getActivity());
     }
 

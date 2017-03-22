@@ -132,12 +132,10 @@ public abstract class BaseFragment extends Fragment implements Contract.View {
         Log.v("AdaperPager", "Fragment create:" + this.getClass().getName());
     }
 
-    protected void hideSoftInput(View v) {
+    protected void hideSoftInput() {
         Log.v("Hide", "hide keyboard");
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-        //getActivity().getWindow().setSoftInputMode(
-        //        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     protected FragmentComponent getFragmentComponent() {
