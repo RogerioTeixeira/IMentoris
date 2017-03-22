@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.texsoft.imentoris.CustomApplication;
@@ -111,6 +113,7 @@ public abstract class BaseFragment extends Fragment implements Contract.View {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutResource(), container, false);
         ButterKnife.bind(this, view);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         return view;
     }
 
@@ -127,6 +130,14 @@ public abstract class BaseFragment extends Fragment implements Contract.View {
         setRetainInstance(true);
         inject(getFragmentComponent());
         Log.v("AdaperPager", "Fragment create:" + this.getClass().getName());
+    }
+
+    protected void hideSoftInput(View v) {
+        Log.v("Hide", "hide keyboard");
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+        //getActivity().getWindow().setSoftInputMode(
+        //        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     protected FragmentComponent getFragmentComponent() {

@@ -4,7 +4,10 @@ package com.texsoft.imentoris.views.auth.signup;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.texsoft.imentoris.R;
 import com.texsoft.imentoris.base.BaseFragment;
@@ -15,6 +18,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.OnEditorAction;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,6 +59,11 @@ public class SignUpFragment extends BaseFragment {
 
     @OnClick(R.id.btn_continue)
     public void onClick() {
+        signUp();
+    }
+
+    public void signUp() {
+
         boolean isValid = true;
         String email = emailInputEdit.getText().toString();
         if (!Validator.isValidEmail(email)) {
@@ -62,6 +71,7 @@ public class SignUpFragment extends BaseFragment {
             isValid = false;
         } else {
             emailInputLayout.setError("");
+            emailInputLayout.setErrorEnabled(false);
         }
 
         String password = passwordInputEdit.getText().toString();
@@ -70,11 +80,22 @@ public class SignUpFragment extends BaseFragment {
             isValid = false;
         } else {
             passwordInputLayout.setError("");
+            passwordInputLayout.setErrorEnabled(false);
         }
-
+        String name = nameInputEdit.getText().toString();
+        hideSoftInput(nameInputEdit);
         if (isValid)
-            presenter.signUpWithPassword(email, password, "mmmm", getActivity());
+            presenter.signUpWithPassword(email, password, name, getActivity());
     }
 
+    @OnEditorAction(R.id.name_input_edit)
+    boolean editorAction(TextView view, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            signUp();
+            return true;
+        } else {
+            return false;
+        }
 
+    }
 }

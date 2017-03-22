@@ -76,6 +76,7 @@
                 android:drawablePadding="5dp"
                 android:drawableStart="@drawable/person_selector"
                 android:hint="@string/hint_name"
+                android:imeOptions="actionDone"
                 android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
