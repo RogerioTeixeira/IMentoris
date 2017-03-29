@@ -84,9 +84,10 @@ public class SignUpFragment extends BaseFragment {
         }
         String name = nameInputEdit.getText().toString();
 
-        if (isValid)
+        if (isValid) {
             hideSoftInput();
             presenter.signUpWithPassword(email, password, name, getActivity());
+        }
     }
 
     @OnEditorAction(R.id.name_input_edit)

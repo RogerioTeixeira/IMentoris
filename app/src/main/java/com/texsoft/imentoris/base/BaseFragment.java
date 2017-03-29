@@ -113,8 +113,13 @@ public abstract class BaseFragment extends Fragment implements Contract.View {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutResource(), container, false);
         ButterKnife.bind(this, view);
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
     public void setTitleToolBar(@StringRes int res) {
